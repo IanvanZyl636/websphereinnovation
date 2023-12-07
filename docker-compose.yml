@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    container_name: "websphere-innovations"
+    image: "europe-west4-docker.pkg.dev/effortless-gate-407219/websphere-innovation-hosting/websphere-innovations"
+    build:
+      context: .
+    ports:
+      - target: 3000
+        published: 3000
+    environment:
+      NODE_ENV: 'production'
