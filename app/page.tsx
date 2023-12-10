@@ -14,8 +14,8 @@ import longTermCooperation from "@/public/long-term-cooperation.jpg";
 import webDevelopment from "@/public/web-development.jpg";
 import businessAnalytics from "@/public/business-analytics.jpg";
 import consultant from "@/public/consultant.png";
-import InfiniteCarousel, {carouselProps} from "@/app/components/carousel/infinite-carousel";
-import {ReactNode} from "react";
+import {carouselProps} from "@/app/components/carousel/infinite-carousel";
+import {ContactUsForm} from "@/app/components/contact-us-form/contact-us-form";
 
 export default function Home() {
     const carouselProps: carouselProps = {
@@ -291,7 +291,9 @@ export default function Home() {
         },
         {
             children: (<>
-
+                <div>
+                    <ContactUsForm></ContactUsForm>
+                </div>
             </>), sectionType: 'transparent'
         },
         {children: (<></>), sectionType: 'fill', position: 'top'},
@@ -313,7 +315,6 @@ export default function Home() {
                     })}
                 </PageContainer>
             </div>
-
         </>
     )
 }
