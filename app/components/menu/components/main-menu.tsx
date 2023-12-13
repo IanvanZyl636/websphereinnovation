@@ -1,29 +1,29 @@
 import MenuLogo from "@/app/components/menu/components/menu-logo";
 
-export default function MainMenu() {
+export default function MainMenu({className}:{className: string | undefined}) {
     return (
-        <menu className={'menu-container'}>
-            <nav className={'menu-nav wrapper-container-fluid relative mx-auto'}>
+        <div className={`menu-container ${className}`}>
+            <menu className={' menu-nav wrapper-container-fluid relative mx-auto w-full'}>
                 <a href={'/#section0'}>
-                    <li className={'menu-logo-container'}>
+                    <div className={'menu-logo-container'}>
                         <MenuLogo></MenuLogo>
-                    </li>
-                </a>
-                <a href={'/#section2'}>
-                    <li>
-                        About Us
-                    </li>
+                    </div>
                 </a>
                 <a href={'/#section1'}>
-                    <li>
+                    <div>
                         Our Services
-                    </li>
+                    </div>
                 </a>
-                <a>
-                    <li>
+                <a href={'/#section2'}>
+                    <div>
+                        About Us
+                    </div>
+                </a>
+                <a href={'/#section4'}>
+                    <div>
                         Contact Us
-                    </li>
+                    </div>
                 </a>
-            </nav>
-        </menu>)
+        </menu>
+        </div>)
 }

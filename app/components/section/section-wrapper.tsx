@@ -5,6 +5,7 @@ import {ReactNode} from "react";
 export type SectionWrapperProps = {
     children?: ReactNode,
     sectionType?: 'fill' | 'transparent',
+    grow?:boolean
     position?: 'top' | 'bottom' | 'horizontal'
     id?: string,
     fullWidth?:boolean
@@ -12,6 +13,7 @@ export type SectionWrapperProps = {
 export default function SectionWrapper({
                                            children,
                                            sectionType = 'fill',
+                                           grow = true,
                                            position = 'horizontal',
                                            id = undefined,
                                            fullWidth = false
@@ -25,7 +27,7 @@ export default function SectionWrapper({
             </div>
             </div>
         </div>) :
-        (<div className={`section-wrapper-container ${position}`}>
+        (<div className={`${grow? '':'section-wrapper-container-no-grow'} section-wrapper-container ${position}`}>
             <div className={'section-wrapper-content'}>
                 <div className={`mx-auto h-full ${fullWidth ? '' : 'wrapper-container-fluid'}`}>
                     {children}

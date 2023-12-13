@@ -1,6 +1,6 @@
 'use client'
-import {ChangeEvent, FocusEvent, ReactNode, useEffect, useState} from "react";
-import {ZodIssue, z} from "zod";
+import {ChangeEvent, FocusEvent, ReactNode, useCallback, useEffect, useState} from "react";
+import {z} from "zod";
 import formatZodIssues from "@/app/integration/zod/helpers/formet-zod-issues.helper";
 import {ErrorsModel} from "@/app/common/models/errors.model";
 import {useFormState} from "react-dom";
@@ -10,10 +10,6 @@ import errorHandler from "@/app/common/helpers/error-handler.helper";
 export type TouchedModel<T> = {
     [K in keyof T]: boolean;
 };
-
-async function pop() {
-    return '';
-}
 
 export default function ValidationForm<T extends object>(
     {
@@ -37,10 +33,11 @@ export default function ValidationForm<T extends object>(
             action: ((prevState: any, formData: FormData) => Promise<ResponseModel>),
         }
 ) {
-    const resetForm = () => {
-        setValues(initialValue);
-        setTouched({} as TouchedModel<T>);
-    }
+    const resetForm = useCallback(() => {
+            setValues(initialValue);
+            setTouched({} as TouchedModel<T>);
+        }
+    ,[initialValue]);
     const markAllTouched = () => {
         let obj: any = {};
         Object.keys(initialValue).forEach(key =>
@@ -92,11 +89,11 @@ export default function ValidationForm<T extends object>(
         }
 
         setErrors(errors);
-    }, [values]);
+    }, [values,zodResolver]);
 
     useEffect(() => {
         if (state.status === 'success') resetForm();
-    }, [state]);
+    }, [state, resetForm]);
 
     return <>
         {children(values, errors, touched, state, handleAction, handleChange, handleBlur, resetForm)}

@@ -19,7 +19,7 @@ export default function MenuLogo() {
                 fontWeight:'600',
                 color:'white'
             }}>
-                Websphere Innovations
+                Websphere Innovation
             </span>
         </div>
     )

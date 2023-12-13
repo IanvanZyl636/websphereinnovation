@@ -11,29 +11,29 @@ export async function SubmitContactUs(prevState: ResponseModel, formData: FormDa
 
         const contactUsModel = contactUsSchema.parse(contactUsFormData);
 
-        // const transporter = nodemailer.createTransport({
-        //     host: 'smtp.gmail.com',
-        //     port:465,
-        //     secure: true,
-        //     auth: {
-        //         user: 'vanzyli101@gmail.com',
-        //         pass: 'wzus xinz hluq risn',
-        //     },
-        // });
-        //
-        // const mailOptions = {
-        //     from: 'vanzyli101@gmail.com',
-        //     to: 'vanzyli101@gmail.com',
-        //     subject: 'Websphere Innovation Contact Us Form',
-        //     html: `
-        //     First Name: ${contactUsModel.firstName}<br/>
-        //     Surname: ${contactUsModel.surname}<br/>
-        //     Email: ${contactUsModel.email}<br/>
-        //     Phone Number: ${contactUsModel.phoneNumber}<br/>
-        //     Message: ${contactUsModel.message}
-        //     `,
-        // };
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port:465,
+            secure: true,
+            auth: {
+                user: 'application@websphereinnovation.com',
+                pass: process.env.GMAIL_SMTP_PASSWORD,
+            },
+        });
 
-        // await transporter.sendMail(mailOptions);
+        const mailOptions = {
+            from: 'application@websphereinnovation.com',
+            to: 'info@websphereinnovation.com',
+            subject: 'Websphere Innovation Contact Us Form',
+            html: `
+            First Name: ${contactUsModel.firstName}<br/>
+            Surname: ${contactUsModel.surname}<br/>
+            Email: ${contactUsModel.email}<br/>
+            Phone Number: ${contactUsModel.phoneNumber}<br/>
+            Message: ${contactUsModel.message}
+            `,
+        };
+
+        await transporter.sendMail(mailOptions);
     });
 }

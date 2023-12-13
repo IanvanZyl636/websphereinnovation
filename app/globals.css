@@ -12,6 +12,27 @@
   --main-text-color:#ffffff;
   --secondary-text-color: #000000;
   --third-text-color:#dae0e4;
+  --smoky-black:#1d1a05ff
+}
+
+* {
+  user-select: none;
+}
+
+.contact-us-bg{
+  background-color: rgb(42 46 53);
+}
+
+.global-input{
+  background-color: rgb(18 24 27 / 0.3);
+}
+
+.bg-button{
+  background-color: var(--main-color);
+}
+
+.bg-button-second{
+  background-color: var(--secondary-color);
 }
 
 
@@ -85,14 +106,12 @@ html, body {
 
 .landing-page-h1{
   color:var(--main-text-color);
-  font-size: 7vmin;
   text-align: center;
   font-weight: 800;
 }
 
 .landing-page-h2{
   color:var(--main-text-color);
-  font-size: 4vmin;
   font-weight: 600;
 }
 
@@ -128,7 +147,19 @@ html, body {
   margin-bottom: -1px;
 }
 
-.menu-nav > a > li {
+.burger-menu-container{
+  border:2px rgba(47, 150, 244, .2) solid;
+}
+
+.mobile-menu-dropdown > a > button{
+  border-top:1px rgba(47, 150, 244, .2) solid;
+}
+
+.mobile-menu-dropdown > a:last-child > button{
+  border-bottom:1px rgba(47, 150, 244, .2) solid;
+}
+
+.menu-nav > a > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -147,7 +178,7 @@ html, body {
   user-select: none;
 }
 
-.menu-nav > a > li:not(.menu-logo-container){
+.menu-nav > a > div:not(.menu-logo-container){
   margin: 0 1rem;
 }
 
@@ -155,7 +186,7 @@ html, body {
   margin: 0 1rem 0 0;
 }
 
-.menu-nav > a > li:hover:not(.menu-logo-container) {
+.menu-nav > a > div:hover:not(.menu-logo-container) {
   border-bottom: 2px var(--secondary-color) solid;
   color: var(--white);
 }
@@ -189,6 +220,10 @@ html, body {
 
 .section-wrapper-container{
   position: relative;
+}
+
+.section-wrapper-container-no-grow{
+  min-height: unset !important;
 }
 
 .section-wrapper-container.top,

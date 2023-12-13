@@ -9,7 +9,7 @@ export function Rocket() {
             <Image src={rocket_smoke} alt={'rocket'}
                    style={{
                        maxWidth:'100%',
-                       width:"auto",
+                       width:"100%",
                        height:"auto",
                        zIndex:2,
                        bottom:-2,

@@ -6,8 +6,6 @@ import contactUsSchema, {contactUsModel} from "@/app/integration/zod/schemas/con
 import {SubmitContactUs} from "@/app/actions/contact-us.action";
 
 export function ContactUsForm() {
-    const size = 'md';
-
     return (<>
         <ValidationForm<contactUsModel>
             initialValue={
@@ -34,15 +32,14 @@ export function ContactUsForm() {
                     resetForm
                 ) => {
                     return (
-                        <form className="w-1/2 text-red-500" action={handleAction} onReset={resetForm}>
+                        <form className="text-red-500" action={handleAction} onReset={resetForm}>
                             <div className="flex flex-col gap-3">
-                                <div className={'flex flex-row gap-3'}>
+                                <div className={'flex md:flex-row flex-col gap-3'}>
                                     <div className={'w-full'}>
                                         <Input
                                             name={'firstName'}
                                             id={'firstName'}
                                             crossOrigin={''}
-                                            size={size}
                                             label={'First Name'}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
@@ -59,7 +56,6 @@ export function ContactUsForm() {
                                             name={'surname'}
                                             id={'surname'}
                                             crossOrigin={''}
-                                            size={size}
                                             label={'Last Name'}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
@@ -77,7 +73,6 @@ export function ContactUsForm() {
                                         name={'email'}
                                         id={'email'}
                                         crossOrigin={''}
-                                        size={size}
                                         label={'Email'}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -94,7 +89,6 @@ export function ContactUsForm() {
                                         name={'phoneNumber'}
                                         id={'phoneNumber'}
                                         crossOrigin={''}
-                                        size={size}
                                         label={'Phone Number'}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -111,7 +105,6 @@ export function ContactUsForm() {
                                         <Textarea
                                             name={'message'}
                                             id={'message'}
-                                            size={size}
                                             label="Message"
                                             onChange={handleChange}
                                             onBlur={handleBlur}
@@ -126,8 +119,8 @@ export function ContactUsForm() {
                                 </div>
                                 <div>
                                     <div className={'flex flex-row gap-3'}>
-                                    <Button type={'submit'}>Submit</Button>
-                                    <Button type={'reset'}>Reset</Button>
+                                        <Button type={'submit'}>Submit</Button>
+                                        <Button type={'reset'}>Reset</Button>
                                     </div>
                                 </div>
                             </div>
