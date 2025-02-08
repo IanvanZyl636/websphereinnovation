@@ -1,12 +1,42 @@
-version: "3"
 services:
   web:
     container_name: "websphere-innovations"
-    image: "europe-west4-docker.pkg.dev/effortless-gate-407219/websphere-innovation-hosting/websphere-innovations"
+    image: "websphere-innovations"
     build:
       context: .
-    ports:
-      - target: 3000
-        published: 3000
     environment:
       NODE_ENV: 'production'
+    restart: unless-stopped # Automatically restart the container on failure
+    networks:
+      - websphere_network # Use a private network for isolation
+    tmpfs:
+      - /tmp # Isolate temporary files
+    security_opt:
+      - no-new-privileges:true # Prevent privilege escalation
+    user: 1000:1000 # Use a non-root user (create it in the Dockerfile)
+    logging:
+      driver: "json-file" # Configure logging
+      options:
+        max-size: "10m"
+        max-file: "3"
+    env_file:
+      - path: ./.env
+        required: true
+
+  cloudflare:
+    container_name: regency-group-cloudflare
+    image: cloudflare/cloudflared:latest
+    command: tunnel run
+    restart: unless-stopped
+    networks:
+      - websphere_network
+    environment:
+      - TUNNEL_TOKEN=${CLOUD_FLARE_TUNNEL_TOKEN}
+    env_file:
+      - path: ./.env
+        required: true
+
+
+  networks:
+    websphere_network:
+      driver: bridge

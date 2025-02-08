@@ -10,8 +10,7 @@ export function ContactUsForm() {
         <ValidationForm<contactUsModel>
             initialValue={
                 {
-                    firstName: '',
-                    surname: '',
+                    fullName: '',
                     email: '',
                     phoneNumber: '',
                     message: ''
@@ -37,34 +36,18 @@ export function ContactUsForm() {
                                 <div className={'flex md:flex-row flex-col gap-3'}>
                                     <div className={'w-full'}>
                                         <Input
-                                            name={'firstName'}
-                                            id={'firstName'}
+                                            name={'fullName'}
+                                            id={'fullName'}
                                             crossOrigin={''}
-                                            label={'First Name'}
+                                            label={'Full Name'}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            value={values.firstName}
-                                            error={touched.firstName && !!errors.firstName}
+                                            value={values.fullName}
+                                            error={touched.fullName && !!errors.fullName}
                                         />
                                         {
-                                            (touched.firstName && !!errors.firstName) ?
-                                                <span>{errors.firstName}</span> : <></>
-                                        }
-                                    </div>
-                                    <div className={'w-full'}>
-                                        <Input
-                                            name={'surname'}
-                                            id={'surname'}
-                                            crossOrigin={''}
-                                            label={'Last Name'}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.surname}
-                                            error={touched.surname && !!errors.surname}
-                                        />
-                                        {
-                                            (touched.surname && !!errors.surname) ?
-                                                <span>{errors.surname}</span> : <></>
+                                            (touched.fullName && !!errors.fullName) ?
+                                                <span>{errors.fullName}</span> : <></>
                                         }
                                     </div>
                                 </div>

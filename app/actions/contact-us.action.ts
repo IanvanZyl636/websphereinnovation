@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import contactUsSchema from "@/app/integration/zod/schemas/contact-us.schema";
 import requestHandler from "@/app/actions/helpers/request-handler.helper";
 import {ResponseModel} from "@/app/common/models/response.model";
+import SMTPConnection from "nodemailer/lib/smtp-connection";
 
 export async function SubmitContactUs(prevState: ResponseModel, formData: FormData){
     return requestHandler(async () => {
@@ -12,24 +13,23 @@ export async function SubmitContactUs(prevState: ResponseModel, formData: FormDa
         const contactUsModel = contactUsSchema.parse(contactUsFormData);
 
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port:465,
+            host: process.env.CONTACT_US_SMTP_HOST,
+            port:process.env.CONTACT_US_SMTP_PORT,
             secure: true,
             auth: {
-                user: 'application@websphereinnovation.com',
-                pass: process.env.GMAIL_SMTP_PASSWORD,
+                user: process.env.CONTACT_US_SMTP_USERNAME,
+                pass: process.env.CONTACT_US_SMTP_PASSWORD,
             },
-        });
+        } as SMTPConnection.Options);
 
         const mailOptions = {
-            from: 'application@websphereinnovation.com',
-            to: 'info@websphereinnovation.com',
-            subject: 'Websphere Innovation Contact Us Form',
+            from: process.env.CONTACT_US_EMAIL_FROM,
+            to: process.env.CONTACT_US_EMAIL_TO,
+            subject: 'Contact Us Form',
             html: `
-            First Name: ${contactUsModel.firstName}<br/>
-            Surname: ${contactUsModel.surname}<br/>
-            Email: ${contactUsModel.email}<br/>
-            Phone Number: ${contactUsModel.phoneNumber}<br/>
+            Name: ${contactUsModel.fullName}<br/><br/>           
+            Email: ${contactUsModel.email}<br/><br/>            
+            Phone: ${contactUsModel.phoneNumber}<br/><br/>            
             Message: ${contactUsModel.message}
             `,
         };
