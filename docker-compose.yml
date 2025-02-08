@@ -37,6 +37,6 @@ services:
         required: true
 
 
-  networks:
-    websphere_network:
-      driver: bridge
+networks:
+  websphere_network:
+    driver: bridge
