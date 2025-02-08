@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "node server.js",
+    "lint": "next lint",
     "build-docker": "docker compose build",
-    "start-docker": "docker compose up -d --no-deps --build",
-    "push-docker": "docker push europe-west4-docker.pkg.dev/effortless-gate-407219/websphere-innovation-hosting/websphere-innovations",
-    "lint": "next lint"
+    "start-docker": "docker compose up -d --no-deps --build"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
